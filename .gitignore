@@ -1,0 +1,54 @@
+# ============================
+# ⚙️ Ignorer les fichiers système
+# ============================
+.DS_Store
+Thumbs.db
+
+# ============================
+# 🚀 Ignorer les fichiers Maven
+# ============================
+target/
+!target/classes/  # Garde uniquement les classes compilées si besoin
+
+# ============================
+# 📦 Ignorer les fichiers IntelliJ IDEA
+# ============================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ============================
+# 🛠 Ignorer les fichiers Eclipse
+# ============================
+.classpath
+.project
+.settings/
+
+# ============================
+# 🔥 Ignorer les fichiers Java compilés
+# ============================
+*.class
+*.war
+*.jar
+
+# ============================
+# 📜 Ignorer les logs et fichiers de build
+# ============================
+*.log
+hs_err_pid*
+*.out
+
+# ============================
+# 📊 Ignorer SonarQube et les rapports de couverture de test
+# ============================
+.sonar/
+jacoco.exec
+coverage/
+*.lcov
+
+# ============================
+# 📄 Ignorer la documentation générée
+# ============================
+docs/javadoc/
+docs/sonar-report/
