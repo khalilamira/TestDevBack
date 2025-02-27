@@ -15,7 +15,6 @@ import java.util.List;
  * Ce service permet :
  * <ul>
  *     <li>D'ajouter des produits au reçu</li>
- *     <li>De calculer les taxes appliquées</li>
  *     <li>De générer un reçu formaté avec les montants</li>
  * </ul>
  */
