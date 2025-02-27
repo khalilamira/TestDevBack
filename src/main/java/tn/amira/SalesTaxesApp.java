@@ -46,7 +46,7 @@ public class SalesTaxesApp {
      */
     public static void main(String[] args) {
         // Initialisation des services
-        String currencyFormat = PropertyConfig.getProperty("receipt.format.currency");
+        String currencyFormat = PropertyConfig.getProperty("receipt.format.summary");
         ITaxCalculator taxCalculator = new TaxCalculatorImpl();
         TotalsCalculatorImpl receiptCalculator = new TotalsCalculatorImpl();
         IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl(receiptCalculator, currencyFormat);

@@ -88,6 +88,4 @@ public class TaxCalculatorImpl implements ITaxCalculator {
         return amount.divide(rounding, 0, RoundingMode.CEILING)
                 .multiply(rounding);
     }
-
-
 }

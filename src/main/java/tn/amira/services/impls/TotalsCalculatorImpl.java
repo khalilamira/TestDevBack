@@ -3,7 +3,6 @@ package tn.amira.services.impls;
 import tn.amira.entities.ReceiptItem;
 import tn.amira.entities.ReceiptSummary;
 import tn.amira.services.interfaces.ITotalsCalculator;
-
 import java.math.BigDecimal;
 import java.util.List;
 

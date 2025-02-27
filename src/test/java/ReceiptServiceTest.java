@@ -38,7 +38,7 @@ class ReceiptServiceTest {
      */
     @BeforeEach
     public void setup() {
-        String currencyFormat = PropertyConfig.getProperty("receipt.format.currency");
+        String currencyFormat = PropertyConfig.getProperty("receipt.format.summary");
         ITotalsCalculator receiptCalculator = new TotalsCalculatorImpl();
         IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl(receiptCalculator, currencyFormat);
         receiptService = new ReceiptServiceImpl(new TaxCalculatorImpl(), receiptFormatter,receiptCalculator);
