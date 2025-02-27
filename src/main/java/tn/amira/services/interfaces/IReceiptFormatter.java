@@ -1,7 +1,6 @@
 package tn.amira.services.interfaces;
 
 import tn.amira.entities.ReceiptItem;
-import tn.amira.entities.ReceiptSummary;
 import tn.amira.services.exceptions.ReceiptFormatterException;
 import java.util.List;
 
@@ -11,8 +10,6 @@ import java.util.List;
  * Cette interface définit :
  * <ul>
  *     <li>Le formatage du reçu en texte.</li>
- *     <li>Le calcul des totaux (montant total et taxes).</li>
- *     <li>La validation des articles avant génération du reçu.</li>
  * </ul>
  *
  */
@@ -26,13 +23,4 @@ public interface IReceiptFormatter {
      * @throws ReceiptFormatterException Si la liste est vide ou si une erreur survient.
      */
     String formatReceipt(List<ReceiptItem> items) throws ReceiptFormatterException;
-
-    /**
-     * Calcule les totaux des taxes et du montant final du reçu.
-     *
-     * @param items La liste des articles du reçu.
-     * @return Un objet {@link ReceiptSummary} contenant les totaux.
-     * @throws ReceiptFormatterException Si la liste est vide ou null.
-     */
-    ReceiptSummary calculateTotals(List<ReceiptItem> items) throws ReceiptFormatterException;
 }

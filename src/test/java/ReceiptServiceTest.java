@@ -1,10 +1,14 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tn.amira.config.PropertyConfig;
 import tn.amira.entities.Product;
 import tn.amira.entities.enums.ProductCategory;
+import tn.amira.services.impls.ReceiptCalculatorImpl;
 import tn.amira.services.impls.ReceiptServiceImpl;
 import tn.amira.services.impls.ReceiptFormatterImpl;
 import tn.amira.services.impls.TaxCalculatorImpl;
+import tn.amira.services.interfaces.IReceiptCalculator;
+import tn.amira.services.interfaces.IReceiptFormatter;
 
 import java.math.BigDecimal;
 
@@ -34,7 +38,10 @@ class ReceiptServiceTest {
      */
     @BeforeEach
     public void setup() {
-        receiptService = new ReceiptServiceImpl(new TaxCalculatorImpl(), new ReceiptFormatterImpl());
+        String currencyFormat = PropertyConfig.getProperty("receipt.format.currency");
+        IReceiptCalculator receiptCalculator = new ReceiptCalculatorImpl();
+        IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl(receiptCalculator, currencyFormat);
+        receiptService = new ReceiptServiceImpl(new TaxCalculatorImpl(), receiptFormatter,receiptCalculator);
     }
 
     /**
@@ -58,7 +65,7 @@ class ReceiptServiceTest {
 
         // When - Calcul du total attendu
         BigDecimal expectedTotal = new BigDecimal("29.83"); // Total attendu avec taxes
-        BigDecimal actualTotal = receiptService.getReceiptFormatter().calculateTotals(receiptService.getItems()).getTotalAmount(); // Méthode qui retourne le total calculé
+        BigDecimal actualTotal = receiptService.getTotalCalculator().calculateTotals(receiptService.getItems()).getTotalAmount();// Méthode qui retourne le total calculé
 
         // Then - Vérification du total
         assertEquals(expectedTotal, actualTotal, "Le total calculé est incorrect.");

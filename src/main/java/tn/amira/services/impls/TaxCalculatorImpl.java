@@ -21,47 +21,73 @@ import java.math.RoundingMode;
  * </p>
  */
 public class TaxCalculatorImpl implements ITaxCalculator {
+
     private static final BigDecimal BASIC_TAX_RATE = BigDecimal.valueOf(PropertyConfig.getDoubleProperty("tax.basic.rate"));
     private static final BigDecimal IMPORT_DUTY_RATE = BigDecimal.valueOf(PropertyConfig.getDoubleProperty("tax.import.rate"));
+
     /**
-     * Calcule le montant total des taxes pour un produit donné.
+     * Calcule le montant de la taxe applicable à un produit donné.
      * <p>
-     * La taxe de base est appliquée uniquement si le produit appartient à la catégorie {@link ProductCategory#OTHER}.
-     * La taxe d'importation est appliquée si le produit est marqué comme importé.
+     * Cette méthode détermine la taxe de base et la taxe d'importation applicables,
+     * puis applique un arrondi au multiple de 0,05 le plus proche.
      * </p>
      *
-     * @param product Le produit pour lequel les taxes doivent être calculées.
-     * @return Montant total des taxes appliquées, arrondi au multiple de 0,05.
+     * @param product Le produit pour lequel la taxe est calculée.
+     * @return Le montant total de la taxe appliquée au produit, arrondi.
      */
     @Override
     public BigDecimal calculateTax(Product product) {
-        BigDecimal taxRate = BigDecimal.ZERO;
-        // Appliquer la taxe de base uniquement si le produit n'est pas exempté
-        if (product.getCategory() == ProductCategory.OTHER) {
-            taxRate = taxRate.add(BASIC_TAX_RATE);
-        }
-        // Appliquer la taxe d'importation si nécessaire
-        if (product.isImported()) {
-            taxRate = taxRate.add(IMPORT_DUTY_RATE);
-        }
-        BigDecimal rawTax = product.getPrice().multiply(taxRate);
-        return roundUpToNearestFiveCents(rawTax);
+        BigDecimal taxRate = getApplicableTaxRate(product).add(getImportTaxRate(product));
+        return roundPrice(product.getPrice().multiply(taxRate));
     }
 
     /**
-     * Arrondit un montant donné au multiple de 0,05 le plus proche.
+     * Détermine le taux de taxe applicable en fonction de la catégorie du produit.
      * <p>
-     * Cette méthode est utilisée pour garantir que les taxes sont toujours
-     * arrondies conformément aux règles fiscales.
+     * Les produits classés comme "OTHER" sont soumis à une taxe de base,
+     * tandis que les livres, la nourriture et les produits médicaux en sont exemptés.
+     * </p>
+     *
+     * @param product Le produit concerné.
+     * @return Le taux de taxe de base applicable.
+     */
+    private BigDecimal getApplicableTaxRate(Product product) {
+        return product.getCategory() == ProductCategory.OTHER ? BASIC_TAX_RATE : BigDecimal.ZERO;
+    }
+
+    /**
+     * Détermine la taxe d'importation si le produit est importé.
+     * <p>
+     * Tous les produits importés sont soumis à une taxe d'importation supplémentaire de 5 %.
+     * </p>
+     *
+     * @param product Le produit concerné.
+     * @return Le taux de taxe d'importation applicable.
+     */
+    private BigDecimal getImportTaxRate(Product product) {
+        return product.isImported() ? IMPORT_DUTY_RATE : BigDecimal.ZERO;
+    }
+
+    /**
+     * Arrondit un montant au multiple de 0,05 le plus proche
+     * <p>
+     * Cette méthode :
+     * <ul>
+     *     <li>Divise le montant par 0,05 pour obtenir un facteur d’arrondi.</li>
+     *     <li>Arrondit ce facteur au plafond.</li>
+     *     <li>Re-multiplie par 0,05 pour revenir au montant arrondi.</li>
+     * </ul>
      * </p>
      *
      * @param amount Le montant à arrondir.
-     * @return Montant arrondi au multiple de 0,05.
+     * @return Le montant arrondi au multiple de 0,05.
      */
-    private BigDecimal roundUpToNearestFiveCents(BigDecimal amount) {
-        BigDecimal multiplier = new BigDecimal("20");
-        return amount.multiply(multiplier)
-                .setScale(0, RoundingMode.CEILING)
-                .divide(multiplier, 2, RoundingMode.HALF_UP);
+    private BigDecimal roundPrice(BigDecimal amount) {
+        final BigDecimal rounding = BigDecimal.valueOf(IMPORT_DUTY_RATE.doubleValue());
+
+        return amount.divide(rounding, 0, RoundingMode.CEILING)
+                .multiply(rounding);
     }
+
+
 }

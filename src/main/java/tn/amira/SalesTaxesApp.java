@@ -1,5 +1,7 @@
 package tn.amira;
 
+import tn.amira.config.PropertyConfig;
+import tn.amira.services.impls.ReceiptCalculatorImpl;
 import tn.amira.services.impls.ReceiptServiceImpl;
 import tn.amira.entities.Product;
 import tn.amira.entities.enums.ProductCategory;
@@ -44,13 +46,15 @@ public class SalesTaxesApp {
      */
     public static void main(String[] args) {
         // Initialisation des services
+        String currencyFormat = PropertyConfig.getProperty("receipt.format.currency");
         ITaxCalculator taxCalculator = new TaxCalculatorImpl();
-        IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl();
+        ReceiptCalculatorImpl receiptCalculator = new ReceiptCalculatorImpl();
+        IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl(receiptCalculator, currencyFormat);
 
         // ===========================
-        // 🎯 Scénario 1 : Output 1
+        // Scénario 1 : Output 1
         // ===========================
-        IReceiptService basket1 = new ReceiptServiceImpl(taxCalculator, receiptFormatter);
+        IReceiptService basket1 = new ReceiptServiceImpl(taxCalculator, receiptFormatter,receiptCalculator);
         basket1.addProduct(new Product("book", new BigDecimal("12.49"), false, ProductCategory.BOOK));
         basket1.addProduct(new Product("music CD", new BigDecimal("14.99"), false, ProductCategory.OTHER));
         basket1.addProduct(new Product("chocolate bar", new BigDecimal("0.85"), false, ProductCategory.FOOD));
@@ -58,18 +62,18 @@ public class SalesTaxesApp {
         System.out.println(basket1.getReceipt());
 
         // ===========================
-        // 🎯 Scénario 2 : Output 2
+        // Scénario 2 : Output 2
         // ===========================
-        IReceiptService basket2 = new ReceiptServiceImpl(taxCalculator, receiptFormatter);
+        IReceiptService basket2 = new ReceiptServiceImpl(taxCalculator, receiptFormatter,receiptCalculator);
         basket2.addProduct(new Product("imported box of chocolates", new BigDecimal("10.00"), true, ProductCategory.FOOD));
         basket2.addProduct(new Product("imported bottle of perfume", new BigDecimal("47.50"), true, ProductCategory.OTHER));
         System.out.println("\nOutput 2:");
         System.out.println(basket2.getReceipt());
 
         // ===========================
-        // 🎯 Scénario 3 : Output 3
+        // Scénario 3 : Output 3
         // ===========================
-        IReceiptService basket3 = new ReceiptServiceImpl(taxCalculator, receiptFormatter);
+        IReceiptService basket3 = new ReceiptServiceImpl(taxCalculator, receiptFormatter,receiptCalculator);
         basket3.addProduct(new Product("imported bottle of perfume", new BigDecimal("27.99"), true, ProductCategory.OTHER));
         basket3.addProduct(new Product("bottle of perfume", new BigDecimal("18.99"), false, ProductCategory.OTHER));
         basket3.addProduct(new Product("packet of headache pills", new BigDecimal("9.75"), false, ProductCategory.MEDICAL));
