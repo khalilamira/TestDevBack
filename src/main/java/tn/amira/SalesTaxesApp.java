@@ -1,7 +1,7 @@
 package tn.amira;
 
 import tn.amira.config.PropertyConfig;
-import tn.amira.services.impls.ReceiptCalculatorImpl;
+import tn.amira.services.impls.TotalsCalculatorImpl;
 import tn.amira.services.impls.ReceiptServiceImpl;
 import tn.amira.entities.Product;
 import tn.amira.entities.enums.ProductCategory;
@@ -48,7 +48,7 @@ public class SalesTaxesApp {
         // Initialisation des services
         String currencyFormat = PropertyConfig.getProperty("receipt.format.currency");
         ITaxCalculator taxCalculator = new TaxCalculatorImpl();
-        ReceiptCalculatorImpl receiptCalculator = new ReceiptCalculatorImpl();
+        TotalsCalculatorImpl receiptCalculator = new TotalsCalculatorImpl();
         IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl(receiptCalculator, currencyFormat);
 
         // ===========================

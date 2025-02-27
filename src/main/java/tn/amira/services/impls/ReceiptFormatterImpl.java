@@ -4,7 +4,7 @@ import tn.amira.config.MessageConfig;
 import tn.amira.entities.ReceiptItem;
 import tn.amira.entities.ReceiptSummary;
 import tn.amira.services.exceptions.ReceiptFormatterException;
-import tn.amira.services.interfaces.IReceiptCalculator;
+import tn.amira.services.interfaces.ITotalsCalculator;
 import tn.amira.services.interfaces.IReceiptFormatter;
 import java.util.List;
 import java.util.Objects;
@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
 /**
  * Implémentation de {@link IReceiptFormatter} pour formater un reçu sous forme de texte lisible.
  * <p>
- * Cette classe reçoit une liste d'articles, calcule les montants à l'aide de {@link IReceiptCalculator},
+ * Cette classe reçoit une liste d'articles, calcule les montants à l'aide de {@link ITotalsCalculator},
  * et génère une sortie formatée avec les détails du reçu.
  * </p>
  */
 public class ReceiptFormatterImpl implements IReceiptFormatter {
 
-    private final IReceiptCalculator receiptCalculator;
+    private final ITotalsCalculator receiptCalculator;
     private final String currencyFormat;
 
     /**
@@ -28,7 +28,7 @@ public class ReceiptFormatterImpl implements IReceiptFormatter {
      * @param receiptCalculator Service de calcul des totaux.
      * @param currencyFormat    Format à utiliser dans l'affichage du reçu.
      */
-    public ReceiptFormatterImpl(IReceiptCalculator receiptCalculator, String currencyFormat) {
+    public ReceiptFormatterImpl(ITotalsCalculator receiptCalculator, String currencyFormat) {
         this.receiptCalculator = receiptCalculator;
         this.currencyFormat = currencyFormat;
     }

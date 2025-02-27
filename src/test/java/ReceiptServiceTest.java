@@ -3,11 +3,11 @@ import org.junit.jupiter.api.Test;
 import tn.amira.config.PropertyConfig;
 import tn.amira.entities.Product;
 import tn.amira.entities.enums.ProductCategory;
-import tn.amira.services.impls.ReceiptCalculatorImpl;
+import tn.amira.services.impls.TotalsCalculatorImpl;
 import tn.amira.services.impls.ReceiptServiceImpl;
 import tn.amira.services.impls.ReceiptFormatterImpl;
 import tn.amira.services.impls.TaxCalculatorImpl;
-import tn.amira.services.interfaces.IReceiptCalculator;
+import tn.amira.services.interfaces.ITotalsCalculator;
 import tn.amira.services.interfaces.IReceiptFormatter;
 
 import java.math.BigDecimal;
@@ -39,7 +39,7 @@ class ReceiptServiceTest {
     @BeforeEach
     public void setup() {
         String currencyFormat = PropertyConfig.getProperty("receipt.format.currency");
-        IReceiptCalculator receiptCalculator = new ReceiptCalculatorImpl();
+        ITotalsCalculator receiptCalculator = new TotalsCalculatorImpl();
         IReceiptFormatter receiptFormatter = new ReceiptFormatterImpl(receiptCalculator, currencyFormat);
         receiptService = new ReceiptServiceImpl(new TaxCalculatorImpl(), receiptFormatter,receiptCalculator);
     }

@@ -2,7 +2,7 @@ package tn.amira.services.impls;
 
 import tn.amira.entities.ReceiptItem;
 import tn.amira.entities.ReceiptSummary;
-import tn.amira.services.interfaces.IReceiptCalculator;
+import tn.amira.services.interfaces.ITotalsCalculator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Service responsable du calcul des totaux d'un reçu.
  */
-public class ReceiptCalculatorImpl implements IReceiptCalculator {
+public class TotalsCalculatorImpl implements ITotalsCalculator {
 
     /**
      * Calcule le total des taxes et le montant total à payer.

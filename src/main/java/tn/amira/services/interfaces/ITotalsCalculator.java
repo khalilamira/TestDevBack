@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Interface définissant les opérations de calcul des totaux d'un reçu.
  */
-public interface IReceiptCalculator {
+public interface ITotalsCalculator {
 
     /**
      * Calcule le total des taxes et le montant total du reçu.

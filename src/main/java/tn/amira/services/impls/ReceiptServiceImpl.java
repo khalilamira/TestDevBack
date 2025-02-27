@@ -3,7 +3,7 @@ package tn.amira.services.impls;
 import lombok.Getter;
 import tn.amira.entities.Product;
 import tn.amira.entities.ReceiptItem;
-import tn.amira.services.interfaces.IReceiptCalculator;
+import tn.amira.services.interfaces.ITotalsCalculator;
 import tn.amira.services.interfaces.IReceiptFormatter;
 import tn.amira.services.interfaces.IReceiptService;
 import tn.amira.services.interfaces.ITaxCalculator;
@@ -23,7 +23,7 @@ import java.util.List;
 public class ReceiptServiceImpl implements IReceiptService {
     private final List<ReceiptItem> items = new ArrayList<>();
     private final ITaxCalculator taxCalculator;
-    private final IReceiptCalculator totalCalculator;
+    private final ITotalsCalculator totalCalculator;
     private final IReceiptFormatter receiptFormatter;
 
     /**
@@ -32,7 +32,7 @@ public class ReceiptServiceImpl implements IReceiptService {
      * @param taxCalculator   Instance du service de calcul des taxes appliquées aux produits.
      * @param receiptFormatter Instance du service de formatage du reçu.
      */
-    public ReceiptServiceImpl(ITaxCalculator taxCalculator, IReceiptFormatter receiptFormatter, IReceiptCalculator totalCalculator) {
+    public ReceiptServiceImpl(ITaxCalculator taxCalculator, IReceiptFormatter receiptFormatter, ITotalsCalculator totalCalculator) {
         this.taxCalculator = taxCalculator;
         this.receiptFormatter = receiptFormatter;
         this.totalCalculator = totalCalculator;
