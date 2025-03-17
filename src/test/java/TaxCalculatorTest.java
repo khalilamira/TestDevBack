@@ -4,7 +4,7 @@ import tn.amira.config.MessageConfig;
 import tn.amira.entities.Product;
 import tn.amira.entities.enums.ProductCategory;
 import tn.amira.services.impls.TaxCalculatorImpl;
-import tn.amira.services.interfaces.ITaxCalculator;
+import tn.amira.services.interfaces.TaxStrategy;
 
 import java.math.BigDecimal;
 
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class TaxCalculatorTest {
 
-    private ITaxCalculator taxCalculator;
+    private TaxStrategy taxCalculator;
 
     // Définition des constantes pour les taux de taxe
     private static final BigDecimal ZERO_TAX = BigDecimal.ZERO;

@@ -17,7 +17,7 @@ import java.math.BigDecimal;
  * Une implémentation typique est {@link tn.amira.services.impls.TaxCalculatorImpl}.
  * </p>
  */
-public interface ITaxCalculator {
+public interface TaxStrategy {
     /**
      * Calcule le montant total des taxes pour un produit donné.
      * <p>

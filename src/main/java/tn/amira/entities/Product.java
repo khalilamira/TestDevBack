@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * <ul>
  *     <li>Un nom {@link #name}.</li>
  *     <li>Un prix {@link #price}.</li>
- *     <li>Un indicateur s'il est importé {@link #isImported}.</li>
+ *     <li>Un indicateur s'il est importé {@link #imported}.</li>
  *     <li>Une catégorie {@link #category} définissant son type.</li>
  * </ul>
  * <p>
@@ -37,7 +37,7 @@ public class Product {
     private final BigDecimal price;
 
     /** Indique si le produit est importé (soumis à des taxes supplémentaires). */
-    private final boolean isImported;
+    private final boolean imported;
 
     /** Catégorie du produit (détermine l'application des taxes). */
     private final ProductCategory category;

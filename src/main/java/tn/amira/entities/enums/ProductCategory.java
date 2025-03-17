@@ -15,12 +15,9 @@ package tn.amira.entities.enums;
  * </ul>
  */
 public enum ProductCategory {
-    /** Produits de type livre (exemptés de taxe de base). */
-    BOOK,
-    /** Produits alimentaires (exemptés de taxe de base). */
-    FOOD,
-    /** Produits médicaux (exemptés de taxe de base). */
-    MEDICAL,
-    /** Tous les autres produits (soumis à la taxe de base). */
-    OTHER
+    BOOK, FOOD, MEDICAL, OTHER;
+
+    public boolean isExempt() {
+        return this == BOOK || this == FOOD || this == MEDICAL;
+    }
 }
