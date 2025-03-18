@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class ReceiptServiceImpl implements IReceiptService {
+public class ReceiptService implements IReceiptService {
 
     private final List<ReceiptItem> items = new ArrayList<>();
     private final TaxStrategy taxCalculator;
     private final IReceiptFormatter receiptFormatter;
 
-    public ReceiptServiceImpl(TaxStrategy taxCalculator, IReceiptFormatter receiptFormatter) {
+    public ReceiptService(TaxStrategy taxCalculator, IReceiptFormatter receiptFormatter) {
         this.taxCalculator = taxCalculator;
         this.receiptFormatter = receiptFormatter;
     }

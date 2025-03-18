@@ -4,9 +4,9 @@ import tn.amira.domain.model.Product;
 import tn.amira.application.ports.TaxStrategy;
 import java.math.BigDecimal;
 
-public class ImportTaxStrategy implements TaxStrategy {
+public class StandardTaxStrategy implements TaxStrategy {
     @Override
     public BigDecimal calculateTax(Product product) {
-        return product.isImported() ? product.getPrice().multiply(new BigDecimal("0.05")) : BigDecimal.ZERO;
+        return product.getCategory().isExempt() ? BigDecimal.ZERO : product.getPrice().multiply(new BigDecimal("0.10"));
     }
 }

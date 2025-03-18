@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public final class ReceiptUtils {
+public final class ReceiptFormattingUtils {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptFormattingUtils.class);
 
-    private ReceiptUtils() {
+    private ReceiptFormattingUtils() {
     }
 
     public static void validateItems(List<ReceiptItem> items) {

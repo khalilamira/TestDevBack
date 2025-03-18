@@ -1,4 +1,4 @@
-package tn.amira.utils;
+package utils;
 
 import org.junit.jupiter.api.Test;
 import tn.amira.application.utils.ReceiptCalculationUtils;
@@ -32,7 +32,7 @@ class ReceiptCalculationUtilsTest {
                 new ReceiptItem(new Product("music CD", new BigDecimal("14.99"), false, ProductCategory.OTHER), new BigDecimal("1.50"))
         );
 
-        BigDecimal totalAmount = ReceiptCalculationUtils.calculateTotalAmount(items);
+        BigDecimal totalAmount = tn.amira.application.utils.ReceiptCalculationUtils.calculateTotalAmount(items);
         assertEquals(new BigDecimal("28.98"), totalAmount);
     }
 
@@ -43,7 +43,7 @@ class ReceiptCalculationUtilsTest {
                 new ReceiptItem(new Product("music CD", new BigDecimal("14.99"), false, ProductCategory.OTHER), new BigDecimal("1.50"))
         );
 
-        ReceiptSummary summary = ReceiptCalculationUtils.calculateTotals(items);
+        ReceiptSummary summary = tn.amira.application.utils.ReceiptCalculationUtils.calculateTotals(items);
         assertEquals(new BigDecimal("1.50"), summary.getTotalSalesTaxes());
         assertEquals(new BigDecimal("28.98"), summary.getTotalAmount());
     }

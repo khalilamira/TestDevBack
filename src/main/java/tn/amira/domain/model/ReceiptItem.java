@@ -4,13 +4,12 @@ import lombok.Getter;
 import tn.amira.application.config.PropertyConfig;
 import java.math.BigDecimal;
 
+@Getter
 public class ReceiptItem {
 
 
     private final Product product;
-    @Getter
     private final BigDecimal taxAmount;
-    @Getter
     private final BigDecimal totalPrice;
 
 

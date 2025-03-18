@@ -5,7 +5,7 @@ import tn.amira.domain.model.ReceiptSummary;
 import java.util.List;
 
 
-public interface ITotalsCalculator {
+public interface IReceiptTotal {
 
     ReceiptSummary calculateTotals(List<ReceiptItem> items);
 }
