@@ -2,9 +2,9 @@ package services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tn.amira.application.services.TaxCalculationService;
-import tn.amira.domain.model.Product;
-import tn.amira.domain.enums.ProductCategory;
+import com.sales.application.services.TaxCalculationService;
+import com.sales.domain.model.Product;
+import com.sales.domain.enums.ProductCategory;
 
 import java.math.BigDecimal;
 

@@ -2,12 +2,12 @@ package services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tn.amira.application.ports.IReceiptFormatter;
-import tn.amira.application.ports.TaxStrategy;
-import tn.amira.application.services.ReceiptService;
-import tn.amira.domain.model.Product;
-import tn.amira.domain.model.ReceiptItem;
-import tn.amira.domain.enums.ProductCategory;
+import com.sales.application.ports.IReceiptFormatter;
+import com.sales.application.ports.TaxStrategy;
+import com.sales.application.services.ReceiptService;
+import com.sales.domain.model.Product;
+import com.sales.domain.model.ReceiptItem;
+import com.sales.domain.enums.ProductCategory;
 
 import java.math.BigDecimal;
 import java.util.List;

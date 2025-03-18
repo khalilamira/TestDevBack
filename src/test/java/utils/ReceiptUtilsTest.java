@@ -1,11 +1,11 @@
 package utils;
 
 import org.junit.jupiter.api.Test;
-import tn.amira.domain.model.ReceiptSummary;
-import tn.amira.infra.exceptions.ReceiptFormatterException;
+import com.sales.domain.model.ReceiptSummary;
+import com.sales.infra.exceptions.ReceiptFormatterException;
 import java.math.BigDecimal;
-import tn.amira.application.config.PropertyConfig;
-import tn.amira.application.utils.ReceiptFormattingUtils;
+import com.sales.application.config.PropertyConfig;
+import com.sales.application.utils.ReceiptFormattingUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 

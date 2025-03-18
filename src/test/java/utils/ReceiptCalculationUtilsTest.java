@@ -1,11 +1,11 @@
 package utils;
 
 import org.junit.jupiter.api.Test;
-import tn.amira.application.utils.ReceiptCalculationUtils;
-import tn.amira.domain.model.Product;
-import tn.amira.domain.model.ReceiptItem;
-import tn.amira.domain.model.ReceiptSummary;
-import tn.amira.domain.enums.ProductCategory;
+import com.sales.application.utils.ReceiptCalculationUtils;
+import com.sales.domain.model.Product;
+import com.sales.domain.model.ReceiptItem;
+import com.sales.domain.model.ReceiptSummary;
+import com.sales.domain.enums.ProductCategory;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,7 +32,7 @@ class ReceiptCalculationUtilsTest {
                 new ReceiptItem(new Product("music CD", new BigDecimal("14.99"), false, ProductCategory.OTHER), new BigDecimal("1.50"))
         );
 
-        BigDecimal totalAmount = tn.amira.application.utils.ReceiptCalculationUtils.calculateTotalAmount(items);
+        BigDecimal totalAmount = ReceiptCalculationUtils.calculateTotalAmount(items);
         assertEquals(new BigDecimal("28.98"), totalAmount);
     }
 
@@ -43,7 +43,7 @@ class ReceiptCalculationUtilsTest {
                 new ReceiptItem(new Product("music CD", new BigDecimal("14.99"), false, ProductCategory.OTHER), new BigDecimal("1.50"))
         );
 
-        ReceiptSummary summary = tn.amira.application.utils.ReceiptCalculationUtils.calculateTotals(items);
+        ReceiptSummary summary = ReceiptCalculationUtils.calculateTotals(items);
         assertEquals(new BigDecimal("1.50"), summary.getTotalSalesTaxes());
         assertEquals(new BigDecimal("28.98"), summary.getTotalAmount());
     }
