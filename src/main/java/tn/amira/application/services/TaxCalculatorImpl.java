@@ -1,9 +1,9 @@
-package tn.amira.services.impls;
+package tn.amira.application.services;
 
-import tn.amira.entities.Product;
-import tn.amira.services.interfaces.TaxStrategy;
-import tn.amira.services.impls.BasicTaxStrategy;
-import tn.amira.services.impls.ImportTaxStrategy;
+import tn.amira.application.strategies.BasicTaxStrategy;
+import tn.amira.application.strategies.ImportTaxStrategy;
+import tn.amira.domain.model.Product;
+import tn.amira.application.ports.TaxStrategy;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

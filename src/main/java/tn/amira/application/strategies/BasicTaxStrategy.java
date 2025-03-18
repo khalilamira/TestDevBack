@@ -1,7 +1,7 @@
-package tn.amira.services.impls;
+package tn.amira.application.strategies;
 
-import tn.amira.entities.Product;
-import tn.amira.services.interfaces.TaxStrategy;
+import tn.amira.domain.model.Product;
+import tn.amira.application.ports.TaxStrategy;
 import java.math.BigDecimal;
 
 public class BasicTaxStrategy implements TaxStrategy {

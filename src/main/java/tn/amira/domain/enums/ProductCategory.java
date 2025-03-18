@@ -1,4 +1,4 @@
-package tn.amira.entities.enums;
+package tn.amira.domain.enums;
 
 /**
  * Catégories de produits disponibles dans le système de taxation.
