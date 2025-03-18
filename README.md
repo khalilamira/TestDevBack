@@ -1,48 +1,33 @@
-📌 SalesTaxesApp
+## 💡 Remarques et Améliorations Possibles
 
-🛒 Introduction
+### 1️⃣ **Gestion des quantités des produits**
+Lors de l'implémentation, une question s'est posée : **Une ligne dans le reçu représente-t-elle toujours un seul produit ou faut-il gérer une quantité ?**  
+Actuellement, le modèle ne prend en compte **qu'un seul produit par ligne**, mais il serait préférable d'ajouter un **attribut `quantity`** dans la classe `ReceiptItem`.  
+Cela permettrait :
+- De gérer **plusieurs unités du même produit** sans dupliquer les entrées.
+- D'optimiser les calculs des taxes et totaux.
 
-SalesTaxesApp est une application Java permettant de calculer les taxes appliquées à des produits, en fonction de leur catégorie et de leur statut d'importation.
-L'application génère des reçus détaillés en affichant les prix après taxes, ainsi que les montants des taxes appliquées.
 
-🚀 Fonctionnalités
+## 💡 Améliorations Possibles
 
-📦 Gestion des produits : Ajout de produits avec leur nom, prix, catégorie et statut (importé ou non).
+- **Ajout de la Javadoc** :  
+  Il serait préférable d'ajouter des **commentaires Javadoc** à toutes les classes et méthodes publiques pour améliorer la lisibilité et la maintenabilité du code.  
+  Cela permettrait :
+  - De **mieux documenter** le rôle de chaque classe.
+  - De **faciliter la compréhension** pour les autres développeurs.
+  - D'améliorer la **maintenabilité du projet**.
 
-🏷 Calcul automatique des taxes :
-
-10% pour les produits non exemptés (hors livres, nourriture et médicaments).
-
-5% de taxe d'importation pour les produits importés.
-
-📜 Génération d'un reçu détaillé : Affichage des produits avec leur prix final et total des taxes.
-
-✅ Respect des bonnes pratiques de développement (SOLID, Clean Code, TDD).
-
-🛠 Prérequis
-
-Java 21
-
-Maven 3.6+
-
-SonarQube (optionnel pour l'analyse du code)
-
-📖 Documentation Technique
-
-📝 Javadoc
-
-La documentation complète est accessible après exécution de :
-
-mvn javadoc:javadoc
-
-🧪 Tests Unitaires
-
-Le projet inclut des tests unitaires avec JUnit 5. Pour exécuter les tests :
-
-mvn test
-
-🛡️ Qualité du Code (SonarQube)
-
-Le code est analysé avec SonarQube pour garantir le respect des bonnes pratiques.
-
-mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.token=<TOKEN>
+  **Exemple de Javadoc à ajouter :**
+  ```java
+  /**
+   * Service qui formate le reçu avant affichage.
+   * Il génère une représentation textuelle des produits achetés et des totaux.
+   */
+  public class ReceiptFormatterService {
+      /**
+       * Formate le reçu à partir de la liste des articles.
+       * @param items Liste des articles du reçu
+       * @return Chaîne formatée du reçu
+       */
+      public String formatReceipt(List<ReceiptItem> items) { ... }
+  }
